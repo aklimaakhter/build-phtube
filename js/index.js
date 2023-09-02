@@ -1,11 +1,11 @@
 const handleCategories = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/videos/categories')
     const data = await res.json();
-    
+
 
     const categoryContainer = document.getElementById('category-container');
 
-    console.log(data.data)
+    // console.log(data.data)
     data.data.forEach(category => {
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
@@ -26,22 +26,27 @@ const handleLoadCategory = async (categoryID) => {
         const cardDiv = document.createElement('div');
         cardDiv.innerHTML =`
             <div class="card  bg-base-100 shadow-xl h-[350px]">
-                <figure class="px-10 pt-10">
-                    <img src="${categories.thumbnail}"class ="h-[150px]" alt="Shoes" class="rounded-xl" />
-                </figure>
-                <div class="card-body">
-                    <div class ="flex justify-center  space-y-4">
-                    <div class ="mr-4">
-                        <img src="${categories?.authors[0]?.profile_picture}" class="h-[50px] w-[50px] rounded-full" alt=""/>
-                    </div>
-                    <div class ="text-sm">
-                        <h1>${categories.title}</h1>
-                        <div class="flex justify-center items-center">
-                            <h5>${categories?.authors[0]?.profile_name}</h5>
-                            <p>${categories.authors[0].verified ? "" : ''}</p>
+                <div class="relative">
+                    <figure class="px-10 pt-10">
+                        <div >
+                            <img src="${categories.thumbnail}" class="h-[150px] " alt="Shoes" class="rounded-xl" />
                         </div>
-                        <p>${categories.others.views} <span>viwes</span></p>
-                    </div>
+                        <p class="absolute bottom-4 left-28 text-white bg-slate-700 px-2 ">${categories.others.posted_date}</p>
+                    </figure>
+                </div>
+                <div class="card-body">
+                    <div class="flex justify-center  space-y-4">
+                        <div class="mr-4">
+                            <img src="${categories?.authors[0]?.profile_picture}" class="h-[50px] w-[50px] rounded-full" alt="" />
+                        </div>
+                        <div class="text-sm">
+                            <h1>${categories.title}</h1>
+                            <div class="flex justify-center items-center">
+                                <h5>${categories?.authors[0]?.profile_name}</h5>
+                                <p>${categories.authors[0].verified ? "<img src='https://img.icons8.com/?size=2x&id=98A4yZTt9abw&format=png' class=' w-5 h-5' >" : ''}</p>
+                            </div>
+                            <p>${categories.others.views} <span>viwes</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,6 +55,9 @@ const handleLoadCategory = async (categoryID) => {
         cardContainer.appendChild(cardDiv);
     })
 }
+
+
+  
 handleCategories()
 handleLoadCategory('1000')
 
