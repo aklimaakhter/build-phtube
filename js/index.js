@@ -19,7 +19,7 @@ const handleCategories = async () => {
 const handleLoadCategory = async (categoryID) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryID}`)
     const data = await res.json()
-    console.log(data.data)
+    // console.log(data.data)
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = '';
     data.data.forEach(categories => {
@@ -62,8 +62,3 @@ handleCategories()
 handleLoadCategory('1000')
 
 
-// body{
-//     ${item.authors[0].verified ? "<img src='./images/download.png' class=' w-5 h-5' >" : ""}
-
-
-// "https://img.icons8.com/?size=2x&id=98A4yZTt9abw&format=png"
